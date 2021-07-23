@@ -1,7 +1,7 @@
 import * as stdPath from "https://deno.land/std@0.97.0/path/mod.ts";
 import * as eta from "https://deno.land/x/eta@v1.6.0/mod.ts";
 import generate from "https://x.nest.land/denoname@0.8.2/mod.ts";
-import { ResumeriseMeta } from "https://deno.land/x/resumerise_library@0.0.2/mod.ts";
+import { ResumeriseMeta } from "https://deno.land/x/resumerise_library@0.0.3/mod.ts";
 const { dirname } = generate(import.meta);
 
 eta.configure({
