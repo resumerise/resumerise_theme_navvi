@@ -1,4 +1,3 @@
-import * as stdPath from "https://deno.land/std@0.97.0/path/mod.ts";
 import * as eta from "https://deno.land/x/eta@v1.6.0/mod.ts";
 import {
   CompileException,
@@ -10,8 +9,6 @@ import {
 import { Resume } from "../resumerise_library/codegen/model/resume.ts";
 import { format } from "https://deno.land/std@0.102.0/datetime/mod.ts";
 import { Settings } from "../resumerise_library/codegen/model/settings.ts";
-
-const __dirname = stdPath.dirname(stdPath.fromFileUrl(import.meta.url));
 
 function formatDate(timestamp: string, settings: Settings) {
   try {
@@ -26,14 +23,18 @@ export const render = async (
   type: string,
 ): Promise<string> => {
   try {
-    const css = Deno.readTextFileSync(`${__dirname}/css/style.css`);
-    const layout = Deno.readTextFileSync(`${__dirname}/templates/layout.eta`);
+    const css = Deno.readTextFileSync(
+      new URL("./css/style.css", import.meta.url).pathname,
+    );
+    const layout = Deno.readTextFileSync(
+      new URL("./templates/layout.eta", import.meta.url).pathname,
+    );
 
     const awardTemplateName = "awards";
     eta.templates.define(
       awardTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/awards.eta`,
+        new URL("./templates/categories/awards.eta", import.meta.url).pathname,
         {} as any,
         true,
       ),
@@ -43,7 +44,7 @@ export const render = async (
     eta.templates.define(
       basicTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/basics.eta`,
+        new URL("./templates/categories/basics.eta", import.meta.url).pathname,
         {} as any,
         true,
       ),
@@ -53,7 +54,8 @@ export const render = async (
     eta.templates.define(
       profileTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/profiles.eta`,
+        new URL("./templates/categories/profiles.eta", import.meta.url)
+          .pathname,
         {} as any,
         true,
       ),
@@ -63,7 +65,8 @@ export const render = async (
     eta.templates.define(
       educationTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/education.eta`,
+        new URL("./templates/categories/education.eta", import.meta.url)
+          .pathname,
         {} as any,
         true,
       ),
@@ -73,7 +76,8 @@ export const render = async (
     eta.templates.define(
       interestTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/interests.eta`,
+        new URL("./templates/categories/interests.eta", import.meta.url)
+          .pathname,
         {} as any,
         true,
       ),
@@ -83,7 +87,8 @@ export const render = async (
     eta.templates.define(
       languageTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/languages.eta`,
+        new URL("./templates/categories/languages.eta", import.meta.url)
+          .pathname,
         {} as any,
         true,
       ),
@@ -93,7 +98,8 @@ export const render = async (
     eta.templates.define(
       publicationTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/publications.eta`,
+        new URL("./templates/categories/publications.eta", import.meta.url)
+          .pathname,
         {} as any,
         true,
       ),
@@ -103,7 +109,8 @@ export const render = async (
     eta.templates.define(
       referenceTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/references.eta`,
+        new URL("./templates/categories/references.eta", import.meta.url)
+          .pathname,
         {} as any,
         true,
       ),
@@ -113,7 +120,7 @@ export const render = async (
     eta.templates.define(
       skillsTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/skills.eta`,
+        new URL("./templates/categories/skills.eta", import.meta.url).pathname,
         {} as any,
         true,
       ),
@@ -123,7 +130,8 @@ export const render = async (
     eta.templates.define(
       volunteerTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/volunteer.eta`,
+        new URL("./templates/categories/volunteer.eta", import.meta.url)
+          .pathname,
         {} as any,
         true,
       ),
@@ -133,7 +141,7 @@ export const render = async (
     eta.templates.define(
       workTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/work.eta`,
+        new URL("./templates/categories/work.eta", import.meta.url).pathname,
         {} as any,
         true,
       ),
@@ -143,7 +151,8 @@ export const render = async (
     eta.templates.define(
       projectTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/projects.eta`,
+        new URL("./templates/categories/projects.eta", import.meta.url)
+          .pathname,
         {} as any,
         true,
       ),
@@ -153,7 +162,8 @@ export const render = async (
     eta.templates.define(
       certificateTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/certifications.eta`,
+        new URL("./templates/categories/certifications.eta", import.meta.url)
+          .pathname,
         {} as any,
         true,
       ),
@@ -163,7 +173,7 @@ export const render = async (
     eta.templates.define(
       dateRangeTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/widgets/date-range.eta`,
+        new URL("./templates/widgets/date-range.eta", import.meta.url).pathname,
         {} as any,
         true,
       ),
@@ -173,7 +183,8 @@ export const render = async (
     eta.templates.define(
       keyValueTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/widgets/key-value-item.eta`,
+        new URL("./templates/widgets/key-value-item.eta", import.meta.url)
+          .pathname,
         {} as any,
         true,
       ),
@@ -183,7 +194,8 @@ export const render = async (
     eta.templates.define(
       listTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/widgets/list.eta`,
+        new URL("./templates/widgets/list.eta", import.meta.url)
+          .pathname,
         {} as any,
         true,
       ),
@@ -193,7 +205,8 @@ export const render = async (
     eta.templates.define(
       locationTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/location.eta`,
+        new URL("./templates/categories/location.eta", import.meta.url)
+          .pathname,
         {} as any,
         true,
       ),
@@ -203,32 +216,29 @@ export const render = async (
     eta.templates.define(
       profilePictureTemplateName,
       eta.loadFile(
-        `${__dirname}/templates/categories/profile-picture.eta`,
+        new URL("./templates/categories/profile-picture.eta", import.meta.url)
+          .pathname,
         {} as any,
         true,
       ),
     );
 
     /** ! DO NOT REMOVE ! ------------ begin */
-    const widgetCss = Deno.readTextFileSync(getWidgetCSSFilePath());
+    const widgetCss = getWidgetCSSFilePath();
 
     const navTemplateName = "nav";
     eta.templates.define(
       navTemplateName,
-      eta.loadFile(
+      eta.compile(
         getNavTemplatePath(),
-        {} as any,
-        true,
       ),
     );
 
     const addTemplateName = "add";
     eta.templates.define(
       addTemplateName,
-      eta.loadFile(
+      eta.compile(
         getAddItemTemplatePath(),
-        {} as any,
-        true,
       ),
     );
     /** ! DO NOT REMOVE ! ------------ end */
@@ -271,7 +281,8 @@ export const render = async (
 export const getMeta = (): ResumeriseMeta => {
   return JSON.parse(
     Deno.readTextFileSync(
-      `${__dirname}/meta.json`,
+      new URL("./meta.json", import.meta.url)
+        .pathname,
     ),
   ) as ResumeriseMeta;
 };
